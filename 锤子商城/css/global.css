@@ -11,6 +11,11 @@ li {
   list-style-type: none;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .container {
   width: 1220px;
   height: 100%;
@@ -72,14 +77,17 @@ li {
 }
 .header .list ul li {
   float: left;
-  margin: 0 10px;
+  margin-right: 25px;
   cursor: pointer;
 }
 .header .list ul li.active {
   color: #27282B;
   font-weight: bold;
 }
-.header .list span {
+.header .list ul li a:hover {
+  color: royalblue;
+}
+.header .list span.search {
   position: absolute;
   right: 25px;
   bottom: 20px;
@@ -88,14 +96,14 @@ li {
   width: 328px;
   height: 34px;
 }
-.header .list span button {
+.header .list span.search button {
   width: 20px;
   height: 20px;
   border: none;
   background-color: transparent;
   margin: 6px 10px;
 }
-.header .list span input {
+.header .list span.search input {
   width: 268px;
   height: 100%;
   margin-right: 15px;
@@ -105,19 +113,53 @@ li {
   font-size: 16px;
   font-weight: bolder;
 }
-.header .list span #items {
+.header .list span.search #items {
   position: absolute;
   right: 10px;
   top: 6px;
 }
-.header .list span a {
+.header .list span.search a {
   text-decoration: none;
   padding: 0 10px;
   border: 1px solid #2f73df;
   border-radius: 10px;
   background-color: #E5EFFF;
+  color: #2f73df;
   font-size: 12px;
   font-weight: bolder;
+}
+/* 补充一下下拉菜单 */
+.show-box {
+  z-index: 666;
+  position: absolute;
+  left: -50px;
+  top: 75px;
+  width: 1320px;
+  min-height: 266px;
+  border-top: 1px solid #000;
+  background-color: #fff;
+}
+.show-box div {
+  width: 1000px;
+  margin: 0 auto;
+}
+.show-box div a {
+  display: inline-block;
+  height: 266px;
+}
+.show-box div a img {
+  display: block;
+}
+.show-box div a span {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+.hide {
+  display: none;
+}
+.header .list .container div:hover .show-box  {
+  display: block;
 }
 
 /* main */
@@ -133,6 +175,7 @@ main .nav-items {
   height: 554px;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 main .nav-items img {
   display: block;

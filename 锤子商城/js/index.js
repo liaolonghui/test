@@ -26,6 +26,7 @@ let i = 0
 let prev = 0
 // 动画效果
 function animationOpacity() {
+  clearInterval(navItems[i])
   navItems[i].style.display = 'block'
   navItems[i].timer = setInterval(function(){
     let currentOpacity = getCurrentOpacity(navItems[i])
