@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      list-style-type: none;
+    }
+    img {
+      display: block;
+      width: 500px;
+      height: 500px;
+    }
+    .images {
+      height: 500px;
+      width: 500px;
+      margin: 50px auto;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0px 10px 10px 5px #ddd;
+    }
+    .images .swiper-container {
+      width: auto;
+      position: absolute;
+      left: -500px;
+    }
+    .images .swiper-container div {
+      float: left;
+      width: 500px;
+      height: 500px;
+    }
+    /* 按钮们 */
+    span {
+      display: block;
+      background-color: #fff;
+      opacity: 0.2;
+      position: absolute;
+      top: 225px;
+      font-size: 50px;
+      cursor: pointer;
+    }
+    span:hover {
+      opacity: 0.7;
+    }
+    span#lt {
+      left: 0;
+    }
+    span#gt {
+      right: 0;
+    }
+    ul {
+      position: absolute;
+      top: 470px;
+      left: 200px;
+      z-index: 10;
+      background-color: #000;
+      opacity: 0.5;
+      padding: 10px;
+    }
+    ul li {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #fff;
+      float: left;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    ul li:first-child {
+      margin-left: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="images">
+    <div class="swiper-container">
+      <div><img src="./images/01.jpg" alt=""></div>
+      <div><img src="./images/02.jpg" alt=""></div>
+      <div><img src="./images/03.jpg" alt=""></div>
+      <div><img src="./images/04.jpg" alt=""></div>
+      <div><img src="./images/05.jpg" alt=""></div>
+    </div>
+    <div>
+      <!-- 左右切换按钮 -->
+      <span id="lt">&lt;</span>
+      <span id="gt">&gt;</span>
+    </div>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <script>
+    const swiperContainer = document.getElementsByClassName('swiper-container')[0]
+    const img1 = swiperContainer.children[0].cloneNode(true)
+    const img2 = swiperContainer.children[swiperContainer.children.length-1].cloneNode(true)
+    swiperContainer.insertBefore(img2, swiperContainer.children[0])
+    swiperContainer.appendChild(img1)
+    swiperContainer.style.width = swiperContainer.children[0].offsetWidth * swiperContainer.children.length + 'px'
+
+    // 开始轮播
+    let index = 0
+    // 下标们
+    let lis = document.getElementsByTagName('li')
+    lis[index].style.backgroundColor = 'red'
+    let speed
+    // 轮播动画
+    function autoPlay() {
+      // 把之前的定时器先清除（防止之前的定时器未清除干扰现在新创建的）
+      clearInterval(swiperContainer.timer)
+      if (index >= swiperContainer.children.length-2) {   // 一共7图  index为5时说明现在处于第六张(实际上的最后一张)要偏移动画到第二张(实际上的开头一张),这时把index设为0并把left设为0
+        index = 0
+        swiperContainer.style.left = '0px'
+      } else if (index < 0) {
+        index = 4
+      }
+      // 让对应的下标亮起来
+      for (let j = 0; j < lis.length; j++) {
+        lis[j].style.backgroundColor = 'white'
+      }
+      lis[index].style.backgroundColor = 'red'
+      // 图片的偏移动画
+      swiperContainer.timer = setInterval(function(){
+        let currentLeft = parseInt(getLeft(swiperContainer))
+        // 因为图片实际从第二张开始轮播
+        if (currentLeft == (index+1) * -500) {
+          clearInterval(swiperContainer.timer)
+          return
+        }
+        // 往左还是往右
+        if (currentLeft < (index+1)*-500) {
+          speed = Math.ceil(((index+1)*-500 - currentLeft)/10)
+        } else {
+          speed = Math.floor(((index+1)*-500 - currentLeft)/10)
+        }
+        swiperContainer.style.left = currentLeft + speed + 'px'
+      }, 50)
+    }
+    // 获取left
+    function getLeft(obj) {
+      if (obj.currentStyle) {
+        return obj.currentStyle.left
+      } else {
+        return getComputedStyle(obj, null).left
+      }
+    }
+    // 开启自动轮播
+    let timer = setInterval(function(){
+      index++
+      autoPlay()
+    }, 2000)
+
+    // 移入图中清除定时器, 移除则开启
+    document.getElementsByClassName('images')[0].onmouseenter = function(){
+      clearInterval(timer)
+    }
+    document.getElementsByClassName('images')[0].onmouseleave = function(){
+      timer = setInterval(function(){
+        index++
+        autoPlay()
+      }, 2000)
+    }
+
+
+    // 按钮们
+    document.getElementById('lt').onclick = function(){
+      index--
+      autoPlay()
+    }
+    document.getElementById('gt').onclick = function(){
+      index++
+      autoPlay()
+    }
+
+    // 下标们
+    for (let li = 0; li < lis.length; li++) {
+      lis[li].index = li
+      lis[li].onclick = function(){
+        index = lis[li].index
+        autoPlay()
+      }
+    }
+  </script>
+</body>
+</html>

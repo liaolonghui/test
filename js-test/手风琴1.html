@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>手风琴1</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    section {
+      width: 700px;
+      height: 600px;
+    }
+    section>div {
+      overflow: hidden;
+    }
+    section>div>p {
+      width: 50px;
+      height: 500px;
+      float: left;
+      transition: width 1s ease;
+    }
+    section>div>p:hover {
+      width: 500px;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <h3 style="height: 100px;">简单纯css无图版</h3>
+    <div>
+      <p style="background-color: violet;"></p>
+      <p style="background-color: wheat;"></p>
+      <p style="background-color: yellow;"></p>
+      <p style="background-color: aqua;"></p>
+      <p style="background-color: blue;"></p>
+    </div>
+  </section>
+</body>
+</html>

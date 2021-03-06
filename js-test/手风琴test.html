@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <style>
+            *{
+                margin: 0; 
+                padding: 0;
+            }
+            body{
+                background-color: rgba(0,0,0,.8);
+            }
+            div{
+                margin: 20px auto;
+            }
+            #c {
+                width: 500px;
+                height: 300px;
+                overflow: hidden;
+            }
+            p {
+                float: left;
+                width: 20px;
+                height: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="c">
+            <p style="background:#9cf;width:420px;">1</p>
+            <p style="background:#f9c;">2</p>
+            <p style="background:#c9f;">3</p>
+            <p style="background:#cf9;">4</p>
+            <p style="background:#9fc;">5</p>
+        </div>
+    </body>
+    <script>
+      function accordion() {
+        var Div = document.getElementById('c');
+        var Divs = Div.getElementsByTagName('p');
+        var i = 0;
+        var t = null;
+        for(i = 0; i < Divs.length; i++) {
+            Divs[i].index = i;
+            Divs[i].onmouseover = function() {
+                var index = this.index;
+                if(t) {
+                    clearInterval(t);
+                }
+                t = setInterval(function() {
+                    var iWidth = 500;
+                    for(i = 0; i < Divs.length; i++) {
+                        // 如果i不是当前所进入的index，则宽度缩小为20px(过渡)
+                        if(index != Divs[i].index) {
+                            var iSpeed = (20 - Divs[i].offsetWidth) / 5;
+                            iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+                            Divs[i].style.width = Divs[i].offsetWidth + iSpeed + 'px';
+                            iWidth -= Divs[i].offsetWidth;
+                        };
+                    };
+                    // 让当前进入的index宽度扩大为400px，因为另外4个占去了100px。(过渡)
+                    Divs[index].style.width = iWidth + 'px';
+                }, 30);
+            };
+        }
+      }
+      accordion();
+    </script>
+</html>

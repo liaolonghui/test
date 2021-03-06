@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    img {
+      width: 200px;
+      height: 200px;
+    }
+    main {
+      position: relative;
+    }
+    section.market {
+      display: inline-block;
+      width: 70%;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    aside.car {
+      position: absolute;
+      top: 0;
+      right: 100px;
+      border: 1px solid #ccc;
+      width: 200px;
+    }
+    .product {
+      overflow: hidden;
+    }
+    .product .product-item {
+      float: left;
+      margin: 20px;
+    }
+    span {
+      display: block;
+    }
+    span>p {
+      display: inline-block;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="market">
+      <h2>商品区</h2>
+      <div class="product">
+        <div class="product-item">
+          <img src="./images/01.jpg" alt="">
+          <p>商品1</p>
+          <span>价格：<p>777</p>￥</span>
+          <button>添加进购物车</button>
+        </div>
+        <div class="product-item">
+          <img src="./images/02.jpg" alt="">
+          <p>商品2</p>
+          <span>价格：<p>888</p>￥</span>
+          <button>添加进购物车</button>
+        </div>
+        <div class="product-item">
+          <img src="./images/04.jpg" alt="">
+          <p>商品3</p>
+          <span>价格：<p>444</p>￥</span>
+          <button>添加进购物车</button>
+        </div>
+        <div class="product-item">
+          <img src="./images/05.jpg" alt="">
+          <p>商品4</p>
+          <span>价格：<p>999</p>￥</span>
+          <button>添加进购物车</button>
+        </div>
+        <div class="product-item">
+          <img src="./images/03.jpg" alt="">
+          <p>商品5</p>
+          <span>价格：<p>787</p>￥</span>
+          <button>添加进购物车</button>
+        </div>
+        <div class="product-item">
+          <img src="./images/01.jpg" alt="">
+          <p>商品6</p>
+          <span>价格：<p>664</p>￥</span>
+          <button>添加进购物车</button>
+        </div>
+        <div class="product-item">
+          <img src="./images/02.jpg" alt="">
+          <p>商品7</p>
+          <span>价格：<p>5345</p>￥</span>
+          <button>添加进购物车</button>
+        </div>
+      </div>
+    </section>
+    <aside class="car">
+      <h2>购物车</h2>
+      <div></div>
+    </aside>
+  </main>
+
+  <script>
+    const boxs = document.querySelectorAll('.product-item')
+    for (let index = 0; index < boxs.length; index++) {
+      let i = boxs[index].children.length-1
+      boxs[index].children[i].onclick = function(){
+        const item = this.parentNode.cloneNode(true)
+        item.removeChild(item.children[i])
+        document.querySelector('.car div').appendChild(item)
+      }
+    }
+  </script>
+</body>
+</html>

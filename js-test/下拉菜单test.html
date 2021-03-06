@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    ul {
+      list-style: none;
+    }
+    a {
+      text-decoration: none;
+      color: white;
+    }
+    nav {
+      background-color: #111;
+    }
+    .nav-items {
+      width: 1220px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .nav-items li {
+      float: left;
+    }
+    .nav-items li a {
+      display: block;
+      padding: 10px 10px;
+    }
+    .nav-items li a:hover {
+      background-color: blue;
+    }
+    drop-panel {
+      position: relative;
+    }
+    .drop-panel>div.secondItems {
+      position: absolute;
+      box-shadow: 0 1px 5px 2px #ddd;
+      display: none;
+    }
+    .drop-panel:hover div.secondItems {
+      display: block;
+    }
+    .drop-panel .secondItems a {
+      color: black;
+      padding: 7px 10px;
+    }
+    .drop-panel .secondItems a:hover {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul class="nav-items">
+      <li><a href="#">选项1</a></li>
+      <li><a href="#">选项2</a></li>
+      <li class="drop-panel">
+        <a href="#">选项3</a>
+        <div class="secondItems">
+          <a href="#">次选1</a>
+          <a href="#">次选2</a>
+          <a href="#">次选3</a>
+        </div>
+      </li>
+      <li><a href="#">选项4</a></li>
+      <li><a href="#">选项5</a></li>
+      <li><a href="#">选项6</a></li>
+    </ul>
+  </nav>
+</body>
+</html>

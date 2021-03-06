@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+    }
+    li {
+      list-style-type: none;
+    }
+    .nav {
+      background-color: #333;
+    }
+    .nav>div {
+      display: inline-block;
+    }
+    .nav>div>a {
+      display: block;
+      color: white;
+      font-size: 15px;
+      padding: 10px 20px;
+    }
+    .nav>div>a:hover {
+      background-color: #3d3cee;
+    }
+    .drop-panel {
+      position: relative;
+    }
+    .drop-panel ul {
+      position: absolute;
+      height: 0px;
+      overflow: hidden;
+      box-shadow: 0px 0px 0px 0px #ddd;
+      transition: height 1s ease-in-out, box-shadow 1s ease-in-out;
+    }
+    .drop-panel:hover ul {
+      height: 210px;
+      box-shadow: 0px 2px 4px 3px #ddd;
+    } 
+    .drop-panel ul li a {
+      display: block;
+      padding: 10px 25px;
+    }
+    .drop-panel ul li a:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <h2>简单的下拉菜单</h2>
+    <nav class="nav">
+      <div><a href="">选项1</a></div>
+      <div><a href="">选项2</a></div>
+      <div><a href="">选项3</a></div>
+      <div class="drop-panel">
+        <a href="">下拉菜单</a>
+        <ul>
+          <li><a href="">item 1</a></li>
+          <li><a href="">item 2</a></li>
+          <li><a href="">item 3</a></li>
+          <li><a href="">item 4</a></li>
+          <li><a href="">item 5</a></li>
+        </ul>
+      </div>
+    </nav>
+  </section>
+</body>
+</html>
