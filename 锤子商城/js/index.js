@@ -18,7 +18,17 @@ document.getElementById('search').onblur = function() {
 }
 
 // 下拉菜单
+let lis = document.querySelectorAll('.header .list ul li')
+let boxs = document.querySelectorAll('.header .list .show-box div')
 
+for (let index = 0; index < lis.length; index++) {
+  lis[index].onmouseenter = function(){
+    for (let i = 0; i < boxs.length; i++) {
+      boxs[i].style.display = 'none'
+    }
+    boxs[index].style.display = 'block'
+  }
+}
 
 // 轮播图
 navItems = document.querySelectorAll('.nav-items img')

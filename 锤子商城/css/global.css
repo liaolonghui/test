@@ -135,8 +135,10 @@ a {
   left: -50px;
   top: 75px;
   width: 1320px;
-  min-height: 266px;
-  border-top: 1px solid #000;
+  height: 0px;
+  overflow: hidden;
+  opacity: 0;
+  transition: height .5s ease,opacity .5s ease;
   background-color: #fff;
 }
 .show-box div {
@@ -155,11 +157,10 @@ a {
   width: 100%;
   text-align: center;
 }
-.hide {
-  display: none;
-}
-.header .list .container div:hover .show-box  {
-  display: block;
+.header .list .container div:hover .show-box {
+  height: 226px;
+  opacity: 1;
+  border-top: 1px solid #999;
 }
 
 /* main */
