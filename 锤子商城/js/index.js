@@ -33,6 +33,7 @@ function animationOpacity() {
     if (currentOpacity == 1) {
       clearInterval(navItems[i].timer)
       navItems[prev].style.display = 'none'
+      return;
     }
     navItems[i].style['opacity'] = (currentOpacity * 100 + 1)/100
     navItems[prev].style['opacity'] = 1 - (currentOpacity * 100 + 1)/100
