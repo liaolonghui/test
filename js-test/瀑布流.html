@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>瀑布流效果</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    #box {
+      position: relative;
+    }
+    .item {
+      width: 200px;
+      position: absolute;
+      text-align: center;
+      font-size: 40px;
+      font-weight: bolder;
+    }
+    .item-1 {
+        background-color: rgb(206, 169, 169);
+        height: 300px;
+    }
+    .item-2 {
+        background-color: rgb(131, 226, 174);
+        height: 150px;
+    }
+    .item-3 {
+        background-color: rgb(77, 30, 30);
+        height: 350px;
+    }
+    .item-4 {
+        background-color: rgb(49, 62, 134);
+        height: 300px;
+    }
+    .item-5 {
+        background-color: rgb(230, 99, 99);
+        height: 200px;
+    }
+    .item-6 {
+        background-color: rgb(206, 169, 169);
+        height: 300px;
+    }
+    .item-7 {
+        background-color: rgb(124, 126, 145);
+        height: 400px;
+    }
+    .item-8 {
+        background-color: rgb(169, 199, 38);
+        height: 230px;
+    }
+    .item-9 {
+        background-color: rgb(114, 128, 53);
+        height: 300px;
+    }
+    .item-10 {
+        background-color: rgb(48, 54, 18);
+        height: 260px;
+    }
+    .item-11 {
+        background-color: rgb(118, 122, 96);
+        height: 230px;
+    }
+    .item-12 {
+        background-color: rgb(118, 122, 96);
+        height: 240px;
+    }
+    .item-13 {
+        background-color: rgb(118, 122, 96);
+        height: 250px;
+    }
+    .item-14 {
+        background-color: rgb(118, 122, 96);
+        height: 270px;
+    }
+    .item-15 {
+        background-color: rgb(118, 122, 96);
+        height: 330px;
+    }
+    .item-16 {
+        background-color: rgb(118, 122, 96);
+        height: 200px;
+    }
+    .item-17 {
+        background-color: rgb(118, 122, 96);
+        height: 100px;
+    }
+    .item-18 {
+        background-color: rgb(118, 122, 96);
+        height: 400px;
+    }
+    .item-19 {
+        background-color: rgb(118, 122, 96);
+        height: 340px;
+    }
+    .item-20 {
+        background-color: rgb(118, 122, 96);
+        height: 350px;
+    }
+    .item-21 {
+        background-color: rgb(118, 122, 96);
+        height: 360px;
+    }
+    .item-22 {
+        background-color: rgb(118, 122, 96);
+        height: 370px;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <div class="item item-1">1</div>
+    <div class="item item-2">2</div>
+    <div class="item item-3">3</div>
+    <div class="item item-4">4</div>
+    <div class="item item-5">5</div>
+    <div class="item item-6">6</div>
+    <div class="item item-7">7</div>
+    <div class="item item-8">8</div>
+    <div class="item item-9">9</div>
+    <div class="item item-10">10</div>
+    <div class="item item-11">11</div>
+    <div class="item item-12">12</div>
+    <div class="item item-13">13</div>
+    <div class="item item-14">14</div>
+    <div class="item item-15">15</div>
+    <div class="item item-16">16</div>
+    <div class="item item-17">17</div>
+    <div class="item item-18">18</div>
+    <div class="item item-19">19</div>
+    <div class="item item-20">20</div>
+    <div class="item item-21">21</div>
+    <div class="item item-22">22</div>        
+  </div>
+  <script>
+    const items = document.getElementsByClassName('item')
+    // 这里把间隙设为20px
+    const gap = 20
+
+    // 瀑布流函数
+    function waterFall(){
+      // 计算出一行可以放几列
+      const documentWidth = window.innerWidth || document.documentElement.clientWidth
+      const itemWidth = items[0].offsetWidth
+      const columns = parseInt(documentWidth / (itemWidth+gap))
+      // arr用于存储每一列的高
+      let arr = []
+
+      for (let i = 0; i < items.length; i++) {
+        // 小于columns说明该元素放第一行
+        if ( i < columns ) {
+          items[i].style.left = i*(itemWidth + gap) + 'px'
+          items[i].style.top = '0px'
+          arr[i] = items[i].offsetHeight
+        } else {
+          // 找出最小高度的那一列
+          let index = 0
+          let min = arr[0]
+          for (let j = 1; j < arr.length; j++) {
+            if (min > arr[j]) {
+              index = j
+              min = arr[j]
+            }
+          }
+          items[i].style.left = index*(itemWidth + gap) + 'px'
+          items[i].style.top = min + gap + 'px'
+          // 更新arr
+          arr[index] = arr[index] + items[i].offsetHeight + gap
+        }
+      }
+    }
+    window.onload = function(){
+      waterFall()
+    }
+    window.onresize = function(){
+      waterFall()
+    }
+  </script>
+</body>
+</html>

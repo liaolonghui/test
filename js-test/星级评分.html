@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    ul {
+      width: 200px;
+      margin: 200px auto;
+      border: 1px solid #000;
+      text-align: center;
+      list-style-type: none;
+    }
+    li {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 5px;
+      border-radius: 50%;
+      border: 1px solid #333;
+      background-color: #000;
+      cursor: pointer;
+    }
+    li.active {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <script>
+    window.onload = function () {
+      const lis = document.getElementsByTagName('li')
+      for (let index = 0; index < lis.length; index++) {
+        lis[index].onclick = function(){
+          for (let j = 0; j < lis.length; j++) {
+            if (j <= index) {
+              lis[j].classList.add('active')
+            } else {
+              lis[j].classList.remove('active')
+            }
+          }
+          let score = index+1
+          alert('你给出了'+score+'星评分')
+        }
+      }
+    }
+  </script>
+</body>
+</html>
