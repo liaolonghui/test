@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .items {
+      width: 500px;
+      height: 500px;
+      position: relative;
+      margin: 50px auto;
+    }
+    .items img {
+      display: none;
+      width: 500px;
+      height: 500px;
+      position: absolute;
+    }
+    img:nth-child(1) {
+      display: block;
+    }
+    .items span.btn {
+      position: absolute;
+      top: 225px;
+      background-color: #fff;
+      opacity: 0.3;
+      font-size: 40px;
+      font-weight: bolder;
+      cursor: pointer;
+    }
+    .items span.btn:hover {
+      opacity: 0.7;
+    }
+    span.btn#lt {
+      left: 0;
+    }
+    span.btn#gt {
+      right: 0;
+    }
+    span.i {
+      overflow: hidden;
+      position: absolute;
+      left: 200px;
+      top: 475px;
+      background-color: #fff;
+    }
+    span.i li {
+      float: left;
+      list-style-type: none;
+      background-color: #666;
+      width: 10px;
+      height: 10px;
+      margin: 3px;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    span.i li.active {
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="items">
+      <img src="./images/01.jpg" alt="">
+      <img src="./images/02.jpg" alt="">
+      <img src="./images/03.jpg" alt="">
+      <img src="./images/04.jpg" alt="">
+      <img src="./images/05.jpg" alt="">
+      <span class="btn" id="lt">&lt;</span>
+      <span class="btn" id="gt">&gt;</span>
+      <span class="i">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </span>
+    </div>
+  </div>
+  <!-- <script src="http://apps.bdimg.com/libs/jquery/2.0.3/jquery.min.js"></script> -->
+  <script src="./jquery.min.js"></script>
+  <script>
+    $(function(){
+      const imgs = $('img')
+      let index = 0
+      
+      function anim () {
+        if (index > imgs.length-1) {
+          index = 0
+        } else if (index < 0) {
+          index = 4
+        }
+        $(imgs[index]).fadeIn(500).siblings().not('span').fadeOut(500)
+        $($('span.i li')[index]).addClass('active').siblings().removeClass('active')
+      }
+      let timer = setInterval(function(){
+        index++
+        anim()
+      }, 2000)
+      $('.items').mouseenter(function(){
+        clearInterval(timer)
+      })
+      $('.items').mouseleave(function(){
+        timer = setInterval(function(){
+          index++
+          anim()
+        }, 2000)
+      })
+
+      // 左右按钮
+      $('#lt').click(function(){
+        index--
+        anim()
+      })
+      $('#gt').click(function(){
+        index++
+        anim()
+      })
+
+      // lis
+      const lis = $('span.i li')
+      for (let i = 0; i < lis.length; i++) {
+        $(lis[i]).click(function(){
+          console.log(i)
+          index = i
+          anim()
+        })
+      }
+    })
+  </script>
+</body>
+</html>

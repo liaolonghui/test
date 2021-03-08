@@ -5,8 +5,90 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>放大镜效果（使用jQuery）</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    img {
+      display: block;
+    }
+    div.bigImage,
+    div.smallImage {
+      float: left;
+      border: 1px solid #000;
+      margin: 50px;
+      margin-left: 20px;
+      width: 250px;
+      height: 250px;
+    }
+    div.bigImage {
+      background-image: url(./images/01.jpg);
+      background-repeat: no-repeat;
+      background-position: 0 0;
+    }
+    div.smallImage {
+      position: relative;
+    }
+    div.mask {
+      position: absolute;
+      width: 125px;
+      height: 125px;
+      background-color: #444;
+      opacity: 0.5;
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <h2>还没写呢！！！</h2>
+  <div class="smallImage" id="smallImage">
+    <div class="mask" id="mask"></div>
+    <img width="250px" height="250px" src="./images/01.jpg" alt="smallImage">
+  </div>
+  <div class="bigImage" id="bigImage" style="display: none;"></div>
+
+  <script src="./jquery.min.js"></script>
+  <script>
+    $(function(){
+      const maskW = $('#mask').width()
+      const maskH = $('#mask').height()
+
+      $('#smallImage').mouseenter(function(){
+        $('#mask').css('display', 'block')
+        $('#bigImage').css('display', 'block')
+      })
+
+      // 绑定mousemove事件
+      $('#smallImage').mousemove(function(e){
+        let l = e.clientX - $('.smallImage').offset().left - maskW/2
+        let t = e.clientY - $('.smallImage').offset().top - maskH/2
+        // left
+        if (l < 0) {
+          l = 0
+        } else {
+          l = l > 125 ? 125 : l
+        }
+        // top
+        if (t < 0) {
+          t = 0
+        } else {
+          t = t > 125 ? 125: t
+        }
+        // 设置遮罩层位置
+        $('#mask').css('left', l)
+        $('#mask').css('top', t)
+
+        // 设置大图位置
+        $('.bigImage').css('background-position-x', -l*2)
+        $('.bigImage').css('background-position-y', -t*2)
+      })
+
+      $('#smallImage').mouseleave(function(){
+        $('#mask').css('display', 'none')
+        $('#bigImage').css('display', 'none')
+      })
+
+    })
+  </script>
 </body>
 </html>

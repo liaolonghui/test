@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lazyLoad</title>
+  <style>
+    img {
+      display: block;
+      width: 500px;
+      height: 500px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <img data-src="./images/01.jpg" alt="">
+  <img data-src="./images/02.jpg" alt="">
+  <img data-src="./images/03.jpg" alt="">
+  <img data-src="./images/04.jpg" alt="">
+  <img data-src="./images/05.jpg" alt="">
+  <img data-src="./images/02.jpg" alt="">
+  <img data-src="./images/03.jpg" alt="">
+  <img data-src="./images/01.jpg" alt="">
+  <img data-src="./images/05.jpg" alt="">
+  <img data-src="./images/04.jpg" alt="">
+  <img data-src="./images/02.jpg" alt="">
+  <img data-src="./images/03.jpg" alt="">
+  <script>
+     var imgs = document.querySelectorAll('img');
+
+    //用来判断bound.top<=clientHeight的函数，返回一个bool值
+    function isIn(el) {
+        var bound = el.getBoundingClientRect();
+        var clientHeight = window.innerHeight;
+        return bound.top <= clientHeight;
+    } 
+    //检查图片是否在可视区内，如果不在，则加载
+    function check() {
+        Array.from(imgs).forEach(function(el){
+            if(isIn(el)){
+                loadImg(el);
+            }
+        })
+    }
+    function loadImg(el) {
+        if(!el.src){
+            var source = el.dataset.src;
+            el.src = source;
+        }
+    }
+    window.onload = window.onscroll = function () { //onscroll()在滚动条滚动的时候触发
+        check();
+    }
+  </script>
+</body>
+</html>
