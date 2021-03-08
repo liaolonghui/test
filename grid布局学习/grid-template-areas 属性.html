@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 100px 200px 100px 1fr;
+      grid-template-rows: 200px 200px 1fr;
+      grid-template-areas: 'header header header aside'
+                           'main main main aside'
+                           'footer footer footer footer';
+    }
+    .container div {
+      border: 1px solid #3aa45a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div>1header</div>
+    <div>2header</div>
+    <div>3header</div>
+    <div>4aside</div>
+    <div>5main</div>
+    <div>6main</div>
+    <div>7main</div>
+    <div>8aside</div>
+    <div>9f</div>
+    <div>10f</div>
+    <div>11f</div>
+    <div>12f</div>
+  </div>
+</body>
+</html>
