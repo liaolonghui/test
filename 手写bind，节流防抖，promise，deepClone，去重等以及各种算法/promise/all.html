@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div></div>
+  <script src="./promise.js"></script>
+  <script>
+    let p1 = Promise.resolve('蛇皮怪')
+    let p2 = Promise.reject('猪头怪')
+    let p3 = Promise.resolve('牛头怪')
+
+    let p = Promise.all([p1,p2,p3])
+
+    console.log(p)
+  </script>
+</body>
+</html>

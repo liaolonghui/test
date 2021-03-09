@@ -133,3 +133,41 @@ Promise.reject = function(reason){
     reject(reason)
   })
 }
+
+
+// all
+Promise.all = function(promises){
+  return new Promise((resolve, reject) => {
+    // 声明一个变量存储通过数量
+    let count = 0
+    // 存储结果
+    let arr = []
+    // 遍历
+    for (let index = 0; index < promises.length; index++) {
+      promises[index].then(v => {
+        // 所以promise对象都成功才resolve
+        count++
+        arr[index] = v
+        if (count === promises.length) {
+          resolve(arr)
+        }
+      }, r => {
+        reject(r)
+      })
+    }
+  })
+}
+
+
+// race
+Promise.race = function(promises){
+  return new Promise((resolve, reject) => {
+    for (let index = 0; index < promises.length; index++) {
+      promises[index].then(v => {
+        resolve(v)
+      }, r => {
+        reject(r)
+      })
+    }
+  })
+}
