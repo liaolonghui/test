@@ -107,3 +107,29 @@ Promise.prototype.then = function(onResolved, onRejected){
 Promise.prototype.catch = function(onRejected){
   return this.then(undefined, onRejected)
 }
+
+
+// resolve
+Promise.resolve = function(value){
+  return new Promise((resolve, reject) => {
+    try {
+      if (value instanceof Promise) {
+        value.then( v => {
+          resolve(v)
+        }, r => {
+          reject(r)
+        })
+      } else {
+        resolve(value)
+      }
+    } catch (error) {
+      reject(error)
+    }
+  })
+}
+// reject   不管传入什么都是失败
+Promise.reject = function(reason){
+  return new Promise((resolve, reject) => {
+    reject(reason)
+  })
+}

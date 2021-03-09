@@ -39,6 +39,14 @@
     }).catch(reason => console.error(reason))
 
 
+    // Promise.resolve()
+    let p1 = Promise.resolve(new Promise((res, rej) => rej('呆鹅')))
+    console.log(p1)
+
+    // Promise.resolve()
+    let p2 = Promise.reject(new Promise((res, rej) => res('呆鹅')))
+    console.log(p2)
+
   </script>
 </body>
 </html>
