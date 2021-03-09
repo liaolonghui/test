@@ -12,24 +12,24 @@ function Promise(executor){
     self.promiseStatus = "resolved"
     self.PromiseValue = data
     // 如果有回调则执行其中所有成功的回调
-    if (self.callbacks.length) {
-      // data和self.promiseValue一样
+    // data和self.promiseValue一样
+    setTimeout(()=>{
       self.callbacks.forEach(item => {
         item.onResolved(data)
       })
-    }
+    },0)
   }
   function reject(data){
     if (self.promiseStatus !== "pending") return
     self.promiseStatus = "rejected"
     self.PromiseValue = data
     // 如果有回调则执行其中所有失败的回调
-    if (self.callbacks.length) {
-      // data和self.promiseValue一样
+    // data和self.promiseValue一样
+    setTimeout(()=>{
       self.callbacks.forEach(item => {
         item.onRejected(data)
       })
-    }
+    },0)
   }
   try {
     executor(resolve, reject)
@@ -78,11 +78,15 @@ Promise.prototype.then = function(onResolved, onRejected){
     }
 
     if (this.promiseStatus === 'resolved') {
-      callback(onResolved)
+      setTimeout(()=>{
+        callback(onResolved)
+      },0)
     }
 
     if (this.promiseStatus === 'rejected') {
-      callback(onRejected)
+      setTimeout(()=>{
+        callback(onRejected)
+      },0)
     }
 
     // 但如果是pending状态则需要
