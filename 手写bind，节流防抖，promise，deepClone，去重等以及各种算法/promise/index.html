@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div></div>
+  <script src="./promise.js"></script>
+  <script>
+    const p = new Promise((resolve, reject) => {
+      // setTimeout(()=>{
+        reject('没你好果汁吃')
+      // },1000)
+    })
+
+    p.then(value => {
+      console.log(value)
+    }, reason => {
+      console.warn(reason)
+    })
+
+    const res = p.then(value => {
+      console.error('我是二号回调：'+value)
+      throw '错误'
+    }, reason => {
+      console.warn('我是二号回调：'+reason)
+      return new Promise((v, r) => {r('我是一个失败的Promise')})
+    })
+
+    // 打印then()的返回值
+    console.log(res)
+
+  </script>
+</body>
+</html>
