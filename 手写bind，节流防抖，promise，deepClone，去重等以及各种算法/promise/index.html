@@ -16,22 +16,28 @@
       },1000)
     })
 
-    p.then(value => {
-      console.log(value)
-    }, reason => {
-      console.warn(reason)
-    })
+    // p.then(value => {
+    //   console.log(value)
+    // }, reason => {
+    //   console.warn(reason)
+    // })
 
-    const res = p.then(value => {
-      console.error('我是二号回调：'+value)
-      throw '错误'
-    }, reason => {
-      console.warn('我是二号回调：'+reason)
-      return new Promise((res, rej) => {rej('我是一个失败的Promise')})
-    })
-
+    // const res = p.then(value => {
+    //   console.error('我是二号回调：'+value)
+    //   throw '错误'
+    // }, reason => {
+    //   console.warn('我是二号回调：'+reason)
+    //   return new Promise((res, rej) => {rej('我是一个失败的Promise')})
+    // })
+    
     // 打印then()的返回值
-    console.log(res)
+    // console.log(res)
+
+    p.then().then(value => {
+      console.log(value)
+      throw '我出问题了'
+    }).catch(reason => console.error(reason))
+
 
   </script>
 </body>

@@ -43,6 +43,17 @@ function Promise(executor){
 // 注意then的返回结果是一个Promise对象
 Promise.prototype.then = function(onResolved, onRejected){
   const self = this
+
+  // 参数可以不传，所以在这里做个判断
+  if (typeof onRejected !== 'function') {
+    onRejected = function(reason){
+      throw reason
+    }
+  }
+  if (typeof onResolved !== 'function') {
+    onResolved = value => value
+  }
+
   return new Promise((resolve, reject) => {
 
     // 封装一下
@@ -89,4 +100,10 @@ Promise.prototype.then = function(onResolved, onRejected){
     }
 
   })
+}
+
+
+// catch
+Promise.prototype.catch = function(onRejected){
+  return this.then(undefined, onRejected)
 }
