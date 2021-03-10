@@ -36,13 +36,21 @@ let i = 0
 let prev = 0
 // 动画效果
 function animationOpacity() {
-  clearInterval(navItems[i])
+  clearInterval(navItems[i].timer)
   navItems[i].style.display = 'block'
   navItems[i].timer = setInterval(function(){
     let currentOpacity = getCurrentOpacity(navItems[i])
     if (currentOpacity == 1) {
       clearInterval(navItems[i].timer)
-      navItems[prev].style.display = 'none'
+      for (let index = 0; index < navItems.length; index++) {
+        if (index !== i) {
+          navItems[index].style.display = 'none'
+          navItems[index].style.opacity = 0
+          spans[index].classList.remove('active')
+        } else {
+          spans[index].classList.add('active')
+        }
+      }
       return;
     }
     navItems[i].style['opacity'] = (currentOpacity * 100 + 1)/100
@@ -110,3 +118,20 @@ document.getElementById('gt').onmouseout = function() {
   timer = setInterval(loop, 2000)
 }
 // 轮播图的index
+const spans = document.querySelectorAll('.nav-items>.index>span')
+for (let index = 0; index < spans.length; index++) {
+  spans[index].onclick = function(){
+    i = index
+    for (let index = 0; index < navItems.length; index++) {
+      if (index !== i) {
+        navItems[index].style.display = 'none'
+        navItems[index].style.opacity = 0
+        spans[index].classList.remove('active')
+      } else {
+        navItems[index].style.display = 'block'
+        navItems[index].style.opacity = 1
+        spans[index].classList.add('active')
+      }
+    }
+  }
+}
