@@ -135,3 +135,16 @@ for (let index = 0; index < spans.length; index++) {
     }
   }
 }
+
+
+window.onscroll = function(){
+  if (document.documentElement.scrollTop > 45) {
+    document.querySelector('.header .list').style.position = 'fixed'
+    document.querySelector('.header .list').style.top = 0
+    document.querySelector('.header .list').style.zIndex = 999
+  } else {
+    document.querySelector('.header .list').style.position = 'static'
+    document.querySelector('.header .list').style.top = '0'
+    document.querySelector('.header .list').style.zIndex = 'auto'
+  }
+}
