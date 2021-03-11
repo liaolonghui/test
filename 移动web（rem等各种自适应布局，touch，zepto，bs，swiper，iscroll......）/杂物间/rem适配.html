@@ -7,8 +7,21 @@
   <title>Document</title>
 </head>
 <body>
+  <div></div>
   <script>
-    
+    // 把屏幕划分为16份进行布局
+    // document.documentElement.style.fontSize = document.documentElement.clientWidth/16;
+    // window.onresize = function(){
+    //   document.documentElement.style.fontSize = document.documentElement.clientWidth/16;
+    // };
+
+    function rem(){
+      var fs = document.querySelector('html').offsetWidth/750 * 100;
+      document.querySelector('html').style.fontSize = fs<=100 ? fs+'px' : '100px';
+      console.log(document.documentElement.style.fontSize)
+    }
+    window.onload = rem
+    window.onresize = rem
   </script>
 </body>
 </html>
