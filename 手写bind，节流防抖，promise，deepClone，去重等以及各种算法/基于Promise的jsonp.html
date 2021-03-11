@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function p(url){
+      let json;
+      let s = document.createElement('script');
+      s.src = url + '?callback=fn';
+      window.fn = function(data){
+          json = data;
+      }
+      //当script被插入文档中时，src中的资源就会开始加载
+      document.body.appendChild(s);
+      
+      return new Promise((resolve,reject)=>{
+          /* throw('err in promise'); */
+          s.onload = function(e){
+              resolve(json);
+          }
+          s.onerror = function(){
+              reject(json);
+          }
+      });
+    }
+    p('http://localhost:8082').then(data=>{
+        console.log(data);
+        throw('err before then');
+    }).catch(err => {
+        //可以捕捉到then里的err befor then也可以捕捉到new Promise里的err in promise。
+        console.log(err)
+    });
+  </script>
+</body>
+</html>

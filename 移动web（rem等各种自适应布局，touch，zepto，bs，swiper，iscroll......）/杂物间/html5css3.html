@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      height: 100px;
+      background-color: #fafafa;
+    }
+    main.d-flex {
+      display: flex;
+      height: 600px;
+    }
+    .d-flex article {
+      flex: 1;
+      height: 100%;
+      background-image: linear-gradient(to left,black, red, yellow, green, white)
+    }
+    .d-flex aside {
+      width: 200px;
+      height: 100%;
+      background-image: linear-gradient(to top, red , yellow , green);
+    }
+    footer {
+      height: 100px;
+      background-image: linear-gradient(to right, gray, white, black)
+    }
+    nav {
+      width: 50px;
+      height: 50px;
+      background-image: radial-gradient(circle, black, white);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 3s ease-in-out;
+    }
+    nav:hover {
+      transform: translateX(200px) rotate(180deg) scale(2) skew(30deg);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>脑阔子</h2>
+    <nav></nav>
+  </header>
+  <main class="d-flex">
+    <article>
+      <section>
+        <h2>something</h2>
+        <p>一些东西?</p>
+        <button id="btn">获取地理位置</button>
+        <div id="gps"></p>
+        <!-- some element -->
+        <video src=""></video>
+        <audio src=""></audio>
+        <embed src="" type="">
+      </section>
+    </article>
+    <aside>aside</aside>
+  </main>
+  <footer>footer</footer>
+  <script>
+    const box = document.getElementById('gps')
+    document.getElementById('btn').onclick = function () {
+      //getCurrentPosition与定时器setInterval类似多次请求，因为位置需要不间断的获取
+      //直接navigator.geolocation表示单次获取位置
+      navigator.geolocation.getCurrentPosition(function (position) {
+        box.innerHTML += "经度" + position.coords.longitude;
+        box.innerHTML += "纬度" + position.coords.latitude;
+        box.innerHTML += "准确度" + position.coords.accuracy;
+        box.innerHTML += "海拔" + position.coords.altitude;
+        box.innerHTML += "海拔准确度" + position.coords.altitudeAcuracy;
+        box.innerHTML += "行进方向" + position.coords.heading;
+        box.innerHTML += "地面速度" + position.coords.speed;
+        box.innerHTML += "请求的时间" + new Date(position.timestamp);
+      }, function (err) {
+        alert(err.code);
+        // code：返回获取位置的状态
+        //       0  :  不包括其他错误编号中的错误
+        // ​		  1  :  用户拒绝浏览器获取位置信息
+        // ​		  2  :  尝试获取用户信息，但失败了
+        // ​		  3  :  设置了timeout值，获取位置超时了
+      }, {
+          enableHighAcuracy: false, //位置是否精确获取
+          timeout: 5000,            //获取位置允许的最长时间
+          maximumAge: 1000          //多久更新获取一次位置
+      })
+    }
+  </script>
+</body>
+</html>
