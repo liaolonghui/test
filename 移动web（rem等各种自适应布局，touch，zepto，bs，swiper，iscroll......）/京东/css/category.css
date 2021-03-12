@@ -1,0 +1,108 @@
+.layout {
+  width: 100%;
+  height: 100%;
+}
+/* header */
+.layout header {
+  height: 3.5rem;
+  width: 100%;
+  position: absolute;
+  background-color: #ee2525;
+}
+.layout header img {
+  display: block;
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+}
+.layout header img:first-child {
+  left: 0.2rem;
+  top: 0.2rem;
+}
+.layout header img:last-child {
+  right: 0.2rem;
+  top: 0.2rem;
+}
+.layout header form {
+  position: absolute;
+  top: 0.4rem;
+  left: 3.5rem;
+  right: 3.5rem;
+  height: 2.5rem;
+}
+header form input {
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  outline: none;
+  border-radius: 1.5rem;
+  font-size: 1rem;
+}
+/* main */
+main {
+  box-sizing: border-box;
+  height: 100%;
+  padding-top: 3.5rem;
+  display: flex;
+  flex-direction: row;
+}
+main .main-left {
+  width: 6rem;
+  overflow: hidden;
+}
+.main-left .items {
+  width: 100%;
+}
+.main-left .items li {
+  width: 100%;
+  height: 3rem;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+.main-left .items li.active {
+  border-right: none;
+}
+.items li.active a {
+  color: #ee2525;
+}
+.items>li>a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 3rem;
+  text-align: center;
+  color: black;
+  font-size: 0.8rem;
+}
+
+main .main-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.main-right img {
+  width: 100%;
+}
+.main-right h3 {
+  padding-left: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+.main-right section#wrapper {
+  flex: 1;
+  overflow: scroll;
+}
+.main-right section li {
+  width: 33.33%;
+  margin-top: 1rem;
+  float: left;
+  text-align: center;
+}
+.main-right li img {
+  display: inline-block;
+  width: 5rem;
+}
+.main-right li p {
+  font-size: 0.9rem;
+}
