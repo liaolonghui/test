@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      margin-bottom: 170px;
+    }
+    .float {
+      height: 200px;
+    }
+    .float>.left {
+      float: left;
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+    .float>.right {
+      float: right;
+      width: 200px;
+      height: 200px;
+      background-color: blue;
+    }
+    .float>.center {
+      height: 200px;
+      background-color: yellow;
+      margin: 0 200px;
+    }
+
+    .position {
+      position: relative;
+      height: 200px;
+    }
+    .position>.left {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .position>.center {
+      height: 200px;
+      background-color: yellow;
+      position: absolute;
+      left: 200px;
+      right: 200px;
+    }
+    .position>.right {
+      width: 200px;
+      height: 200px;
+      background-color: blue;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .table {
+      display: table;
+      width: 100%;
+    }
+    .table>.left {
+      display: table-cell;
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+    .table>.center {
+      display: table-cell;
+      height: 200px;
+      background-color: yellow;
+    }
+    .table>.right {
+      display: table-cell;
+      width: 200px;
+      height: 200px;
+      background-color: blue;
+    }
+
+    .flex {
+      display: flex;
+    }
+    .flex>.left {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+    }
+    .flex>.center {
+      flex: 1;
+      height: 200px;
+      background-color: yellow;
+    }
+    .flex>.right {
+      width: 200px;
+      height: 200px;
+      background-color: blue;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-rows: 200px;
+      grid-template-columns: 200px auto 200px;
+    }
+    .grid>.left {
+      background-color: red;
+    }
+    .grid>.center {
+      background-color: yellow;
+    }
+    .grid>.right {
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+  <section class="float container">
+    <aside class="left"></aside>
+    <aside class="right"></aside>
+    <!-- center要放后面 -->
+    <article class="center">
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+    </article>
+  </section>
+
+  <section class="position container">
+    <aside class="left"></aside>
+    <article class="center">
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+    </article>
+    <aside class="right"></aside>
+  </section>
+
+  <section class="table container">
+    <aside class="left"></aside>
+    <article class="center">
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+    </article>
+    <aside class="right"></aside>
+  </section>
+
+  <section class="flex container">
+    <aside class="left"></aside>
+    <article class="center">
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+    </article>
+    <aside class="right"></aside>
+  </section>
+
+  <section class="grid container">
+    <aside class="left"></aside>
+    <article class="center">
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+      <p>adsfghj</p>
+    </article>
+    <aside class="right"></aside>
+  </section>
+</body>
+</html>
