@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="box" style="width: 200px;height: 200px;background-color: #222; box-sizing: content-box; padding: 20px;border: 1px solid yellow;"></div>
+  <script>
+    const box = document.getElementById('box');
+    // 获取行内样式， 可以读写
+    console.log(box.style.height)
+    // ie专属，只读
+    if (box.currentStyle) {
+      console.log(box.currentStyle.height)
+    }
+    // 只读
+    if (getComputedStyle) {
+      console.log(getComputedStyle(box, null).height)
+    }
+    // 只读 且不带单位 (获取到的宽高是包含内边距和边框的)
+    console.log(box.getBoundingClientRect().height)
+    console.log(box.offsetHeight)
+  </script>
+</body>
+</html>

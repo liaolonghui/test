@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      margin-bottom: 100px;
+    }
+    .float {
+      height: 200px;
+    }
+    .float>.left {
+      float: left;
+      width: 200px;
+      height: 200px;
+      background-color: brown;
+    }
+    .float>.right {
+      height: 200px;
+      margin-left: 200px;
+      background-color: black;
+    }
+
+    
+    .position {
+      position: relative;
+      height: 200px;
+    }
+    .position>.left {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 200px;
+      height: 200px;
+      background-color: #000;
+    }
+    .position>.right {
+      position: absolute;
+      left: 200px;
+      right: 0;
+      top: 0;
+      height: 200px;
+      background-color: brown;
+    }
+
+    .table {
+      display: table;
+      width: 100%;
+    }
+    .table>.left {
+      display: table-cell;
+      width: 200px;
+      background-color: brown;
+    }
+    .table>.right {
+      display: table-cell;
+      background-color: #000;
+    }
+
+    .flex {
+      display: flex;
+    }
+    .flex>.left {
+      width: 200px;
+      background-color: #000;
+    }
+    .flex>.right {
+      flex: 1;
+      background-color: brown;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-rows: 200px;
+      grid-template-columns: 200px auto;
+    }
+    .grid>.left {
+      background-color: brown;
+    }
+    .grid>.right {
+      background-color: #000;
+    }
+  </style>
+</head>
+<body>
+  <section class="float container">
+    <article class="left"></article>
+    <aside class="right"></aside>
+  </section>
+
+  <section class="position container">
+    <article class="left"></article>
+    <aside class="right"></aside>
+  </section>
+
+  <section class="table container">
+    <article class="left"></article>
+    <aside class="right" style="color: white;">
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+    </aside>
+  </section>
+
+  
+  <section class="flex container">
+    <article class="left"></article>
+    <aside class="right">
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+      <p>asdfg</p>
+    </aside>
+  </section>
+
+  
+  <section class="grid container">
+    <article class="left"></article>
+    <aside class="right"></aside>
+  </section>
+</body>
+</html>
