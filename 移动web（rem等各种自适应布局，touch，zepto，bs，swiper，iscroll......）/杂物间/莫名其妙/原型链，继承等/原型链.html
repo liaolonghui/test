@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>xx对象.__proto__指向其构造函数的prototype，该prototype的__proto__又指向它的构造函数的prototype，一直到Object()的prototype，Object()的prototype的__proto__指向null。</div>
+  <p>函数才有prototype，所有对象都有__proto__。</p>
+  <p>要注意构造函数也是对象，所以构造函数也有__proto__，指向Function()的prototype。</p>
+  <script>
+    let o1 = {
+      a: 'aaa'
+    };
+    let o2 = new Object({a: 'aaa'});
+    console.log(o1);
+    console.log(o2);
+    console.log('字面量方式定义对象，和new Object()类似。');
+
+    // 构造函数
+    function M(){
+      this.a = 'aaaa';
+    }
+    let o3 = new M();
+    console.log(o3);
+    console.log('构造函数方式定义对象。');
+
+
+    // 使用Object.create()
+    let p = {
+      a: 'aaa'
+    };
+    let o4 = Object.create(p);
+    console.log(o4);
+    console.log('使用Object.create()')
+
+  </script>
+</body>
+</html>

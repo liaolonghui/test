@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 手写new
+    function _new(fn, ...args){
+      // 1.创建一个新对象，让他的__proto__指向fn构造函数的prototype
+      let obj = Object.create(fn.prototype);
+      // 2.用新创建的对象调用fn构造函数
+      let ret = fn.apply(obj, args);
+      // 3.如果返回的ret是一个对象，则return它，否则return第一步创建的obj。
+      return typeof ret === 'object' ? ret : obj;
+    }
+
+    function M(a){
+      this.a = a;
+    }
+
+    let o = _new(M, 'asfdg')
+    console.log(o);
+
+
+    // 判断是具体哪个构造函数创建的对象，应该使用xx.__proto__.constructor
+    console.log(o.__proto__.constructor)
+  </script>
+</body>
+</html>
