@@ -7,6 +7,72 @@
   <title>Document</title>
 </head>
 <body>
-  NOMORE
+  <script>
+
+    // 1. 使用构造函数实现继承
+
+    // // 父类
+    // function Parent(act){
+    //   this.act = act;
+    // }
+    // Parent.prototype.play = function(){
+    //   console.log('play');
+    // }
+    // // 子类
+    // function Child(name, act){
+    //   this.name = name;
+    //   Parent.call(this, act);
+    // }
+    // let c = new Child('小米', '我是act');
+    // // 这种方式获取不到父类原型对象上的属性或方法
+    // c.play();
+
+
+    // 2. 使用构造函数以及借助原型链（组合方式实现继承）
+
+    // function Parent(act){
+    //   this.act = act;
+    // }
+    // Parent.prototype.play = function(){
+    //   console.log('play');
+    // }
+    // function Child(name, act){
+    //   this.name = name;
+    //   Parent.call(this, act);
+    // }
+    // // 把子类的原型对象换成父类的一个实例
+    // // 缺点：所有子类的实例共用一个原型对象........
+    // Child.prototype = new Parent();
+    // const c = new Child('小王', '我是谁？act？');
+    // console.log(c);
+
+    // 可以改为使用Child.prototype = Parent.prototype, 但这样父子共用一个原型对象，所以不好。
+    // 除了这些以外，子类的原型对象上的constructor指向有问题
+
+
+
+
+    // 3. 组合继承优化版
+
+    function Parent(act){
+      this.act = act;
+    }
+    Parent.prototype.play = function(){
+      console.log('play');
+    }
+    function Child(name, act){
+      this.name = name;
+      Parent.call(this, act);
+    }
+    Child.prototype = Object.create(Parent.prototype);  // 使用Object.create()生成一个新对象，该对象的__proto__指向了父类的prototype
+    // 但是此时的原型对象.constructor指向了父类，需要改正
+    Child.prototype.constructor = Child;
+
+    const c = new Child('小明', '哈哈哈哈哈哈哈');
+    console.log(c);
+    console.log(c.__proto__);
+    console.log(c.__proto__.constructor);
+
+  </script>
 </body>
 </html>
