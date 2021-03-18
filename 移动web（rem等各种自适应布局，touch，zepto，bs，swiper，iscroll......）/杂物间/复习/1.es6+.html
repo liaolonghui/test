@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // const obj = {
+    //   a: 'aaaa',
+    //   b: 'bbbb'
+    // };
+    // let a = '修改后的a'
+    // obj.a = a;
+    // console.log(obj);
+    // console.log('使用const定义常量，并不能保证对象中的属性不改变。')
+    // let { b } = obj;
+    // console.log(b);
+
+
+    let add = (...count) => {
+      // let sum = 0;
+      // count.map(item => {
+      //   sum += item;
+      // });
+      let sum = count.reduce((sum, item) => {
+        return sum += item;
+      }, 0);
+      console.log(`${count}相加等于${sum}`);        // startsWith   endsWith
+      return sum;
+    };
+    console.log(add(1, 2, 555, 999));
+
+
+    
+    // let gl0 = (...arr) => {
+    //   let gl0Arr = arr.filter((item) => {
+    //     return item > 0;
+    //   });
+    //   return gl0Arr;
+    // };
+    // console.log(gl0(20, 745, -412, -2, 62, -42));
+
+
+    // JSON.stringify()   JSON.parse()
+
+
+    // 异步处理     generator    Promise    async/await   .......
+
+
+    // @babel/cli命令行界面             @babel/core  @babel/reset-env  babel-loader .......
+
+    // .babelrc文件     babel.config.js文件
+
+
+
+
+
+
+
+
+    class Parent {
+      constructor(dott){
+        this.dott = dott;
+      }
+    }
+    class Child extends Parent {
+      constructor (name, age, dott) {
+        super(dott);
+        this.name = name;
+        this.age = age;
+      }
+    }
+
+    console.log(new Child('小米', 22, '芜湖芜湖芜湖~~~'))
+
+  </script>
+</body>
+</html>
