@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch</title>
+</head>
+<body>
+  <button id="btn">获取图片</button>
+  <img id="ppp"></img>
+  <script>
+    const btn = document.querySelector('#btn');
+    const ppp = document.querySelector('#ppp');
+
+    btn.addEventListener('click', async function(){
+      const res = await fetch('http://localhost:8888/data/ppp');
+      console.log(res);
+      const data = await res.blob();  // 转二进制
+      console.log(data);
+      const url = URL.createObjectURL(data);   // 转URL
+      ppp.setAttribute('src', url);
+    }, false);
+  </script>
+</body>
+</html>

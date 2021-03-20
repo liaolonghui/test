@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSONP</title>
+</head>
+<body>
+  <form id="form">
+    <label>name:<input type="text" name="name"></label>
+    <label>age:<input type="text" name="age"></label>
+  </form>
+  <button id="btn">CORS</button>
+  <p id="p">...</p>
+  <script>
+    const btn = document.getElementById('btn');
+    const p = document.getElementById('p');
+
+    btn.onclick = function(){
+      let xhr;
+      if (XMLHttpRequest) {
+        xhr = new XMLHttpRequest();
+      } else {
+        xhr = ActiveXObject("Microsoft.XMLHTTP")
+      }
+      xhr.open('post', 'http://localhost:8888/cors', true);
+      // FormData
+      xhr.send(new FormData(document.getElementById('form')));
+      xhr.onload = function(){
+        if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+          p.innerText = xhr.responseText;
+        } else {
+          p.innerText = '失败了';
+        }
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSONP</title>
+</head>
+<body>
+  <button id="btn">CORS</button>
+  <p id="p">...</p>
+  <script>
+    const btn = document.getElementById('btn');
+    const p = document.getElementById('p');
+
+    // jsonp的回调
+    function jsonpCb(data){
+      p.innerHTML = `使用jsonp获取到的数据：${data}`;
+    }
+
+    btn.onclick = function(){
+      let srcEl = document.createElement('script');
+      srcEl.src = 'http://localhost:8888/jsonp?cb=jsonpCb';
+      document.body.appendChild(srcEl);
+    }
+  </script>
+</body>
+</html>
